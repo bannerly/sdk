@@ -1,0 +1,1 @@
+{"description":"Expo / React Native client SDK for the Slotly ad server","license":"MIT","main":"AdSlot.tsx","name":"slotly-sdk","peerDependencies":{"react":"*","react-native":"*","react-native-webview":"*"},"type":"module","version":"0.1.0"}
