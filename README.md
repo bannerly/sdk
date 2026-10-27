@@ -1,6 +1,6 @@
-# slotly-sdk
+# bannerly-sdk
 
-[Slotly](https://github.com/bannerly/server) 広告配信サーバー用の、Expo / React Native クライアント SDK です。
+[bannerly](https://github.com/bannerly/server) 広告配信サーバー用の、Expo / React Native クライアント SDK です。
 アプリ内の広告枠コンポーネント `AdSlot` を提供します。
 
 ## 導入
@@ -18,7 +18,7 @@ npx expo install react-native-webview
 import { AdSlot } from "./AdSlot";
 
 <AdSlot
-  baseUrl="https://ads.example.com"  // Slotly サーバーのオリジン
+  baseUrl="https://ads.example.com"  // bannerly サーバーのオリジン
   zone="app-home-top"                 // 枠 ID（管理画面で発行）
   region="tokyo"                      // 任意: 地域ルール用
   style={{ height: 180 }}
@@ -37,7 +37,7 @@ import { AdSlot } from "./AdSlot";
 
 | 名前 | 必須 | 説明 |
 |---|---|---|
-| `baseUrl` | ○ | Slotly サーバーのオリジン（末尾スラッシュなし） |
+| `baseUrl` | ○ | bannerly サーバーのオリジン（末尾スラッシュなし） |
 | `zone` | ○ | 枠 ID |
 | `region` | | 地域ターゲティング用の値 |
 | `style` | | 枠のスタイル |
