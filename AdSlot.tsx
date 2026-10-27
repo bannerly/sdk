@@ -24,23 +24,26 @@ type Props = {
   baseUrl: string;          // 広告基盤のオリジン（末尾スラッシュなし）
   zone: string;             // 枠ID
   region?: string;          // 地域ルール用（任意）
+  city?: string;            // 市ルール用（任意・cf.city の英語表記 例 "Yokohama"）
   style?: StyleProp<ViewStyle>;
 };
 
-export function AdSlot({ baseUrl, zone, region, style }: Props) {
+export function AdSlot({ baseUrl, zone, region, city, style }: Props) {
   const [ad, setAd] = useState<AdResponse | null>(null);
   const impSent = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
     impSent.current = false;
-    const q = region ? `?format=json&region=${encodeURIComponent(region)}` : "?format=json";
-    fetch(`${baseUrl}/ad/${zone}${q}`)
+    const params = new URLSearchParams({ format: "json" });
+    if (region) params.set("region", region);
+    if (city) params.set("city", city);
+    fetch(`${baseUrl}/ad/${zone}?${params.toString()}`)
       .then(r => r.json())
       .then((j: AdResponse) => { if (!cancelled) setAd(j); })
       .catch(() => { /* 広告が取れない場合は枠を出さない */ });
     return () => { cancelled = true; };
-  }, [baseUrl, zone, region]);
+  }, [baseUrl, zone, region, city]);
 
   if (!ad) return null;
 
